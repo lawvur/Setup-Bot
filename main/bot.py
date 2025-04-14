@@ -12,7 +12,7 @@ bot = commands.Bot(command_prefix="!", intents=intents)
 async def setup_server(ctx):
     try:
 
-        await ctx.send("⚠️ This will **DELETE ALL channels** in the server. Type `!confirm` within 30 seconds to proceed.")
+        await ctx.send("This will **DELETE ALL** channels in the server. Type `!confirm` within 30 seconds to proceed.")
 
         def check(m):
             return m.author == ctx.author and m.content.lower() == "!confirm"
@@ -20,7 +20,7 @@ async def setup_server(ctx):
         try:
             await bot.wait_for('message', check=check, timeout=30)
         except:
-            return await ctx.send("❌ Setup cancelled. No confirmation received.")
+            return await ctx.send("Setup cancelled. No confirmation received.")
 
 
         for channel in ctx.guild.channels:
@@ -87,26 +87,26 @@ async def setup_server(ctx):
 **Rule 12** - Intentionally asking for a person's age is not allowed **[Warn > Ban]**  
 **Rule 13** - Harassing and threatening others **[Warn > Mute]** (If the other reports they're being harassed/threatened, this rule applies.)
 
-**⚠️ Depending on the severity or number of violations, punishments may escalate. Repeated offenses (e.g. multiple NSFW posts) may result in instant ban.**
+**Depending on the severity or number of violations, punishments may escalate. Repeated offenses (e.g. multiple NSFW posts) may result in instant ban.**
 """
         await rules_channel.send(rules_text)
 
-        # Create other important channels
+       
         ann_channel = await ctx.guild.create_text_channel("📢・announcements", category=important_cat)
         welcome_channel = await ctx.guild.create_text_channel("👋・welcome", category=important_cat)
         for ch in [ann_channel, welcome_channel]:
             await ch.set_permissions(ctx.guild.default_role, send_messages=False)
             await ch.set_permissions(roles["Member"], send_messages=False)
 
-        # Community channels
+       
         community_channels = ["💬・general", "🎨・media"]
         for name in community_channels:
             await ctx.guild.create_text_channel(name, category=community_cat)
 
-        # Voice channel
+        
         await ctx.guild.create_voice_channel("🎧・General VC", category=vc_cat)
 
-        # Assign "Member" role to users (excluding bots/owner)
+        # assings the member role to all users
         for member in ctx.guild.members:
             if not member.bot and member != ctx.guild.owner:
                 await member.add_roles(roles["Member"])
