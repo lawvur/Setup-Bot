@@ -10,3 +10,6 @@ Automatically sets up a Discord server upon !setup command execution.
 pip install discord.py
 ```
 + Run the "setup.py" by using Terminal or just double clicking the file.
+
+
+*this is WIP (work in progress) and is still being updated.*
