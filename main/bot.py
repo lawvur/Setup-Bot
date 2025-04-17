@@ -1,5 +1,5 @@
-# server setup bot by paranoia
-# https://discord.gg/pr3dxBMVMu
+# server setup bot by law
+# https://discord.gg/VG9jzY2Tsm
 
 import discord
 from discord.ext import commands
